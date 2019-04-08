@@ -1,12 +1,4 @@
-import { request as nodeHttpRequest } from "http";
-import {
-  isNumber,
-  isUndefined,
-  isString,
-  supportsSendBeacon,
-  supportsXMLHttpRequest,
-  supportsNodeHttpModule
-} from "./utils";
+import { isNumber, isUndefined, isString, makeRequester } from "./utils";
 import { version } from "../package.json";
 
 export type InsightsEventType = "click" | "conversion" | "view";
@@ -28,6 +20,8 @@ export type InsightsEvent = {
 const USER_AGENT = encodeURIComponent(
   `Algolia insights for JavaScript (${version})`
 );
+
+const request = makeRequester();
 /**
  *  Sends data to endpoint
  * @param eventType InsightsEventType
@@ -128,35 +122,5 @@ function bulkSendEvent(
   // Auth query
   const reportingURL = `${endpointOrigin}/1/events?X-Algolia-Application-Id=${appId}&X-Algolia-API-Key=${apiKey}&X-Algolia-Agent=${USER_AGENT}`;
 
-  const data = JSON.stringify({ events });
-
-  if (supportsSendBeacon()) {
-    // Always try sending data through sendbeacon
-    navigator.sendBeacon(reportingURL, data);
-  } else if (supportsXMLHttpRequest()) {
-    const report = new XMLHttpRequest();
-    report.open("POST", reportingURL);
-    report.send(data);
-  } else if (supportsNodeHttpModule()) {
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Content-Length": data.length
-      }
-    };
-
-    const req = nodeHttpRequest(reportingURL, options);
-
-    req.on("error", error => {
-      console.error(error);
-    });
-
-    req.write(data);
-    req.end();
-  } else {
-    throw new Error(
-      "Could not find a supported HTTP request client in this environment."
-    );
-  }
+  request(reportingURL, { events });
 }
