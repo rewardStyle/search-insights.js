@@ -1,4 +1,4 @@
-// import { request as nodeHttpRequest } from "http";
+import { request as nodeHttpRequest } from "http";
 
 export const supportsCookies = () => {
   try {
@@ -25,10 +25,10 @@ export const supportsXMLHttpRequest = () => {
   }
 };
 
-// export const supportsNodeHttpModule = () => {
-//   try {
-//     return !!nodeHttpRequest;
-//   } catch (e) {
-//     return false;
-//   }
-// };
+export const supportsNodeHttpModule = () => {
+  try {
+    return !!nodeHttpRequest;
+  } catch (e) {
+    return false;
+  }
+};
