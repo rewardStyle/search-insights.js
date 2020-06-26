@@ -4549,10 +4549,10 @@ html-minifier@^3.2.3, html-minifier@^3.5.8:
     relateurl "0.2.x"
     uglify-js "3.4.x"
 
-html-replace-webpack-plugin@2.5.5:
-  version "2.5.5"
-  resolved "https://registry.npmjs.org/html-replace-webpack-plugin/-/html-replace-webpack-plugin-2.5.5.tgz#4cdb2834578fb44b53943adf292fccf3d759557d"
-  integrity sha512-yEDPhbtG6LPlh+RFZsKZVKap6XJ/x7D/cg6BZuS3Bj9M2k18fK26x6QQi1nqH/UP6kkRh6PMZqs53beh02PZIA==
+html-replace-webpack-plugin@2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/html-replace-webpack-plugin/-/html-replace-webpack-plugin-2.5.6.tgz#cc2bc4629fc984967801f9e81b0b1e9907012dd3"
+  integrity sha512-McyP6qwQQJ01TyyRaVi7uLGXNXHVx5SqC53dPdByzB5JrQHXkzE2qMxQOewqaLl70ITmaDp+HhfJRWcB/7pbwA==
 
 html-webpack-plugin@3.2.0:
   version "3.2.0"
